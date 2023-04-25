@@ -1,0 +1,21 @@
+{
+  "name": "restful-api-handler",
+  "version": "1.0.0",
+  "description": "a simple class to handle RESTful API requests in json with minimal required setup",
+  "main": "index.ts",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vasili-ordina/api-handler.git"
+  },
+  "keywords": [
+    "API",
+    "RESTful",
+    "JSON"
+  ],
+  "author": "Vasili Paspalas",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/vasili-ordina/api-handler/issues"
+  },
+  "homepage": "https://github.com/vasili-ordina/api-handler#readme"
+}
