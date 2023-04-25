@@ -113,22 +113,19 @@ Sometimes you just want to do a bunch of requests all at the same time. This is 
 
 With endpoints as an array of strings:
 ```
-	const APIconnection = new APIHandler({
-		succes: (response)=>showDRI(response), 
-		failed: ()=>showError("oops, it's not going so well", err)
-	});
-  APIconnection.multiRequestJSON(['/DRI_energy', '/DRI_prot', '/DRI_water'])
-  .then((responses)=>{
-    console.log("multi", responses);
-  })  
+const APIconnection = new APIHandler({
+	succes: (responses)=>showDRI(responses), 
+	failed: ()=>showError("oops, it's not going so well", err)
+});
+APIconnection.multiRequestJSON(['/DRI_energy', '/DRI_prot', '/DRI_water'])
 ```
 ...or with objects in an array allowing options instead:
 ```
 APIconnection.multiRequestJSON([
-		{endpoint: '/posts', {method: 'POST', body: "some data to be send"}}, 
-		{endpoint: '/DRI_prot'}, 
-		{endpoint: '/DRI_water'},
-	])
+	{endpoint: '/posts', {method: 'POST', body: "some data to be send"}}, 
+	{endpoint: '/DRI_prot'}, 
+	{endpoint: '/DRI_water'},
+])
 ```
 ### full example
 ...
