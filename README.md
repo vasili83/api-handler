@@ -131,3 +131,4 @@ APIconnection.multiRequestJSON([
 ...
 
 ## Reference
+For now, you can use the types.ts as a reference. It is well commented.

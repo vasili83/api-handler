@@ -6,10 +6,10 @@ export default class APIHandler implements APIHandlerInterface {
   private defaultConfig: RequestObj = {
     endpoint: '/',
     options: {
-      method: 'GET'
+        method: 'GET'
       , headers: {
           'Accept-Charset': 'UTF-8'
-        , 'Content-Type': 'text/JSON'
+        , 'Content-Type': 'application/json'
         , 'Accept': 'application/json'
       }
     }
@@ -32,7 +32,7 @@ export default class APIHandler implements APIHandlerInterface {
     if (config?.authToken) this.authToken = config.authToken;
     if (config?.successCallback) this.success = config.successCallback;
     if (config?.failedCallback) this.failed = config.failedCallback;
-    
+    if (config?.defaultConfig) this.defaultConfig = config.defaultConfig;
     this.isOk = true;
     this.apiURL = this.baseURL + this.defaultConfig.endpoint;
   }

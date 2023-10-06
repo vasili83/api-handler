@@ -13,10 +13,16 @@ type ValidUrlCharNoSlash = `${
   
   /** config general for the class instance */
  export interface GeneralConfig {
+    /** base URL that always precedes every request. current url if ommited */
     baseURL?:BaseURL,
+    /** bearer token for all requests */
     authToken?:string,
+    /** callback when requests are succesful */
     successCallback?:(status:string, response?:any)=>any,
+    /** callback when requests return as unsuccesful */
     failedCallback?:(status:string, err?:any)=>any,
+    /** to override defaultConfig, this can be done by passing this in the constructor (class instantiation) */
+    defaultConfig?:RequestObj,
   }
   
   /** config optional as request config */
