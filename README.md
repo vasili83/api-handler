@@ -90,9 +90,8 @@ import APIHandler from "restful-api-handler";
 
 onMounted(async ()=>{
 	const APIconnection = new APIHandler();
-	await APIconnection
-	.check()
-	.requestJSON('/allproducts')
+	await APIconnection.check();
+	APIconnection.requestJSON('/allproducts')
 		.then((response)=>showProducts(response))
 		.catch((err)=>showError("oops, something went wrong", err);	
 });
@@ -119,6 +118,8 @@ const APIconnection = new APIHandler({
 });
 APIconnection.multiRequestJSON(['/DRI_energy', '/DRI_prot', '/DRI_water'])
 ```
+> ⚠️ **Note**: The `multiRequestJSON` method expects an array of strings, not comma-separated strings!
+
 ...or with objects in an array allowing options instead:
 ```
 APIconnection.multiRequestJSON([
