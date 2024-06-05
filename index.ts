@@ -15,7 +15,7 @@ export default class APIHandler implements APIHandlerInterface {
     }
   }
   public version: number = 1;
-  /** how much time between tries to reconnect after a failed connection attemt (in ms) */
+  /** how much time between tries to reconnect after a failed connection attempt (in ms) */
   public retryTime: number = 5000;
   /** base url of API that hosts all endpoints */
   public baseURL: BaseURL;

@@ -5,17 +5,20 @@
   "main": "index.ts",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/vasili-ordina/api-handler.git"
+    "url": "git+https://github.com/vasili83/api-handler.git"
   },
   "keywords": [
     "API",
     "RESTful",
     "JSON"
   ],
-  "author": "Vasili Paspalas",
+  "author": {
+    "name": "Vasili Paspalas",
+    "email": "restful-api-handler@vasili.nl"
+  },
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/vasili-ordina/api-handler/issues"
+    "url": "https://github.com/vasili83/api-handler/issues"
   },
-  "homepage": "https://github.com/vasili-ordina/api-handler#readme"
+  "homepage": "https://github.com/vasili83/api-handler#readme"
 }
