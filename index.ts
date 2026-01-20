@@ -15,6 +15,8 @@ export default class APIHandler implements APIHandlerInterface {
     }
   }
   public version: number = 1;
+  /** howe many times retry */
+  public retriesMax: number = 1;
   /** how much time between tries to reconnect after a failed connection attempt (in ms) */
   public retryTime: number = 5000;
   /** base url of API that hosts all endpoints */
@@ -24,7 +26,11 @@ export default class APIHandler implements APIHandlerInterface {
   public apiURL: string;
   /** bearer token for authentication */
   public authToken: string | undefined;
+  /** expose serverreplies to console (for debugging and logging data) */
+  public exposeResponse: boolean = false;
+
   private intervalID: any;
+  // private retriesDone: number = 0;
 
   /** constructor APIHandler class (initialize vars) */
   constructor(config?:GeneralConfig)  {
@@ -37,7 +43,7 @@ export default class APIHandler implements APIHandlerInterface {
     this.apiURL = this.baseURL + this.defaultConfig.endpoint;
   }
   /** A check beforehand if there is a connection and API (root) is available. Needs asynced await te work properly! */
-  public check = async ():Promise<boolean> => {
+  public check = async (retriesDone:number = 0):Promise<boolean> => {
     this.isOk = navigator.onLine;
 
     if(this.intervalID && navigator.onLine === false) this.failed("reconnect-failed");
@@ -45,7 +51,10 @@ export default class APIHandler implements APIHandlerInterface {
     window.addEventListener("offline", (e) => { 
       if(this.isOk !== navigator.onLine) { 
         this.failed("connection-interupt");
-        this.intervalID = setInterval(this.check, this.retryTime);
+        if(this.retriesMax > retriesDone){
+          retriesDone++;
+          this.intervalID = setInterval(this.check(retriesDone), this.retryTime);
+        }
       }
     }, {once: true})
 
@@ -160,19 +169,19 @@ export default class APIHandler implements APIHandlerInterface {
 
   /** callback when succesful */
   public success = (status: string, response?: any) => {
-    console.info("success, status: " + status, response);
+    this.exposeResponse && console.info("success, status: " + status, response);
     return {status, response};
   }
 
   /** callback when failed */
   public failed = (status: string, err?: any) => {
-    console.error("failed, status: " + status, err);
+    this.exposeResponse && console.error("failed, status: " + status, err);
     return {status, err};
   }  
   
   /** callback when behaviour is funky */
   public warning = (status: string, response?: any) => {
-    console.warn("warning, status: " + status, response);
+    this.exposeResponse && console.warn("warning, status: " + status, response);
     return {status, response}
   }
 }
